@@ -11,7 +11,9 @@ function getComputerChoice(){
     }
 }
 
-function playRound(playerSelection, computerSelection){
+function playRound(event){
+    playerSelection = event.target.textContent;
+    const computerSelection = getComputerChoice();
     if(playerSelection.toLowerCase() == computerSelection.toLowerCase()){
         return `You tie! You both chose ${playerSelection}`;
     }
@@ -27,11 +29,9 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-function game(){
-    for(let i = 0; i < 5;i++){
-        let input = prompt("Do you pick rock, paper or scissors?");
-        console.log(playRound(input, getComputerChoice()));
-    }
-}
+buttons = document.querySelectorAll("button");
+buttons.forEach((button) => button.addEventListener('click', game));
 
-game();
+function game(event){
+    console.log(playRound(event));
+}
